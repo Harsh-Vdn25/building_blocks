@@ -19,7 +19,8 @@ export class concurrencyLimiter {
 
       this.active++;
 
-      fn()
+      Promise.resolve()
+        .then(fn)
         .then(resolve)
         .catch(reject)
         .finally(() => {
@@ -38,4 +39,3 @@ export class concurrencyLimiter {
 }
 
 const cLimiter = new concurrencyLimiter(3);
-

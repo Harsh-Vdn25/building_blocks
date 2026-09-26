@@ -21,7 +21,7 @@ export class QueueLL<T>{
     enqueue(ele:T){
         if(this.actualSize>=this.sizeLimit){
             console.log("The queue is full.");
-            return;
+            return null;
         }
 
         const newNode = new Node(ele);
@@ -29,10 +29,11 @@ export class QueueLL<T>{
         if(this.tail == null){
             this.root = newNode;
             this.tail = newNode;
-            return;
+            return ele;
         }
         this.tail.next = newNode;
         this.tail = newNode;
+        return ele;
     }
 
     dequeue():T|null{
